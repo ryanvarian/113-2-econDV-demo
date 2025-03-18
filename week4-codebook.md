@@ -45,4 +45,7 @@ The number of travelers varies significantly across different years, affected by
 - Some destinations may have missing values for certain years, indicating either unrecorded data or no travelers recorded for that destination.
 - The dataset captures the first arrival destination, meaning that travelers may visit additional destinations afterward.
 - The number of travelers can be influenced by various factors, including political relations, travel restrictions, economic conditions, and global events such as the COVID-19 pandemic (notable declines in 2020 and 2021).
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9ae0575db95c52822142966d13d9ea1948252c29
