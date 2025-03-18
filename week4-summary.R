@@ -20,3 +20,4 @@ reshaped_travel_data %>%
     total_travelers = sum(Number_of_Travelers, na.rm = TRUE)
   )
 
+

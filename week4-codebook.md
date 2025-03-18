@@ -16,35 +16,33 @@ This dataset captures the number of travelers visiting Japan from 2002 to 2024. 
 - The significant drop in travelers in 2020 and 2021 aligns with the COVID-19 pandemic and related travel restrictions.
 - The dataset shows a gradual recovery in traveler numbers in 2022 and 2023, with a substantial increase projected for 2024.
 
-# To get the structure of the dataset
-> str(reshaped_travel_data)
-spc_tbl_ [943 × 4] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
- $ 首站抵達地         : chr [1:943] "亞洲地區" "亞洲地區" "亞洲地區" "亞洲地區" ...
- $ 細分               : chr [1:943] "日本Japan" "日本Japan" "日本Japan" "日本Japan" ...
- $ Year               : num [1:943] 2002 2003 2004 2005 2006 ...
- $ Number_of_Travelers: num [1:943] NA NA NA NA NA ...
- - attr(*, "spec")=
-  .. cols(
-  ..   首站抵達地 = col_character(),
-  ..   細分 = col_character(),
-  ..   Year = col_double(),
-  ..   Number_of_Travelers = col_double()
-  .. )
- - attr(*, "problems")=<externalptr> 
-> # Get a more specific summary of each variable (including counts for NA)
-> reshaped_travel_data %>%
-+   summarise(
-+     total_records = n(),
-+     unique_regions = n_distinct(首站抵達地),
-+     unique_subregions = n_distinct(細分),
-+     unique_years = n_distinct(Year),
-+     missing_values = sum(is.na(Number_of_Travelers)),
-+     min_year = min(Year),
-+     max_year = max(Year),
-+     total_travelers = sum(Number_of_Travelers, na.rm = TRUE)
-+   )
-# A tibble: 1 × 8
-  total_records unique_regions unique_subregions unique_years missing_values min_year max_year total_travelers
-          <int>          <int>             <int>        <int>          <int>    <dbl>    <dbl>           <dbl>
-1           943              6                41           23            201     2002     2024       535342704
-> 
+## **Summary Statistics**  
+
+### **1. General Overview**  
+- **Total Records:** `r nrow(reshape_travel_data)`  
+- **Unique Destination Regions:** `r n_distinct(reshape_travel_data$首站抵達地)`  
+- **Unique Countries/Territories:** `r n_distinct(reshape_travel_data$細分)`  
+- **Year Range:** `r min(reshape_travel_data$Year, na.rm = TRUE)` - `r max(reshape_travel_data$Year, na.rm = TRUE)`  
+- **Missing Values in Number_of_Travelers:** `r sum(is.na(reshape_travel_data$Number_of_Travelers))`  
+
+### **2. Yearly Travel Trends**  
+The number of travelers varies significantly across different years, affected by various global events. Below are the key observations:  
+- **2008-2019:** A steady increase in outbound travel, with Japan, Korea, and Hong Kong among the most popular destinations.  
+- **2020-2021:** A sharp decline due to the COVID-19 pandemic, with travel numbers dropping drastically in 2020 and 2021.  
+- **2022-2024:** A gradual recovery, with 2023 and 2024 seeing a strong rebound in travel numbers.  
+
+### **3. Top Travel Destinations (2008-2024)**
+| Destination | Peak Number of Travelers | Year of Peak |
+|------------|------------------------|-------------|
+| **Japan**  | 6,006,116 | 2024 |
+| **Korea**  | 1,429,398 | 2024 |
+| **Hong Kong** | 2,851,170 | 2008 |
+
+---
+
+## Notes
+  - The dataset uses "NA" to indicate missing or unrecorded values.
+- Some destinations may have missing values for certain years, indicating either unrecorded data or no travelers recorded for that destination.
+- The dataset captures the first arrival destination, meaning that travelers may visit additional destinations afterward.
+- The number of travelers can be influenced by various factors, including political relations, travel restrictions, economic conditions, and global events such as the COVID-19 pandemic (notable declines in 2020 and 2021).
+
